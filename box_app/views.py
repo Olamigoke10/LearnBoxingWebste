@@ -6,10 +6,16 @@ from django.contrib.auth.models import User
 from .models import Video
 
 # Create your views here.
+def get_video():
+    return Video.objects.all()
 
 
 def home(request):
-    return render(request, 'base/home.html')
+    videos = get_video()  # Fetch videos
+    context = {
+        'videos': videos,  # Add videos to context
+    }
+    return render(request, 'base/home.html', context)
 
 
 def Signup(request):
@@ -67,6 +73,11 @@ def logoutUser(request):
     logout(request)
     return redirect('home')
 
+
+
 def video_list(request):
-    videos = Video.objects.all()
-    
+    videos = get_video()
+    context = {
+        'videos': videos
+    }
+    return render(request, 'base/video.html', context)

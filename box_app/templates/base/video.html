@@ -1,0 +1,29 @@
+{% extends 'main.html '%}
+{% load static %}
+{% block content %}
+{% for video in videos %}
+<div class="item">
+    <div class="box">
+        <div class="img-box">
+            <video width="100%" controls>
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="detail-box">
+                <button>
+                    <img src="{% static 'images/play-icon.png' %}" alt="Play Video">
+                </button>
+                <h2>
+                    {{ video.title }}
+                </h2>
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="#">
+                See More
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
