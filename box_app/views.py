@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUPForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -42,17 +43,20 @@ def Signup(request):
 
 def loginPage(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
         email = request.POST.get('email')
+        password = request.POST.get('password')
         
-        user = authenticate(request, email=email, password=password)
+        try:
+            user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=password)
+        except User.DoesNotExist:
+            user = None
         
         if user is not None:
             login(request, user)
             messages.success(request, "Login successful")
             return redirect('home')
         else:
-            messages.error(request, "Username does not exist")
+            messages.error(request, "Invalid email or password")
             
     return render(request, 'base/register.html')

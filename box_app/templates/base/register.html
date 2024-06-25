@@ -17,7 +17,7 @@
       </div>
       <div class="form-inner">
         <!-- Login Form -->
-        <form action="{% url 'login' %}" class="login" method="post">
+        <form action="{% url 'loginPage' %}" class="login" method="post">
           {% csrf_token %}
           <div class="field">
             <input type="email" name="email" placeholder="Email Address" required>

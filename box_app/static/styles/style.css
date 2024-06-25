@@ -61,6 +61,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    z-index: 1;
   }
   
   .hero_area::before {
@@ -233,11 +234,13 @@ body {
   }
   
   .custom_nav-container {
-    z-index: 99999;
+    z-index: 10000;
   }
 
+
   .dropdown-menu {
-    z-index: 1000; /* Adjust as needed based on your layout */
+    z-index: 100001;
+    position: relative;
   }
   
   .custom_nav-container .navbar-toggler {
