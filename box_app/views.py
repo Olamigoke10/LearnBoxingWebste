@@ -3,6 +3,7 @@ from .forms import SignUPForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Video
 
 # Create your views here.
 
@@ -60,3 +61,12 @@ def loginPage(request):
             messages.error(request, "Invalid email or password")
             
     return render(request, 'base/register.html')
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+def video_list(request):
+    videos = Video.objects.all()
+    
