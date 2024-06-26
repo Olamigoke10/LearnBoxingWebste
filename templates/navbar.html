@@ -221,23 +221,19 @@
                 <div class="item">
                     <div class="box">
                         <div class="img-box">
-                            <video width="100%" controls>
+                            <video width="100%" controls id="video{{ forloop.counter }}">
                                 <source src="{{ video.video_file.url }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="detail-box">
-                                <button>
+                                <button onclick="toggleVideo(this.parentNode.previousElementSibling.querySelector('video'))">
                                     <img src="{% static 'images/play-icon.png' %}" alt="Play Video">
                                 </button>
-                                <h2>
-                                    {{ video.title }}
-                                </h2>
+                                <h2>{{ video.title }}</h2>
                             </div>
                         </div>
                         <div class="btn-box">
-                            <a href="#">
-                                See More
-                            </a>
+                            <a href="#">See More</a>
                         </div>
                     </div>
                 </div>
@@ -250,5 +246,70 @@
     </div>
   </section>
 
-  <a href="{% url 'video_list' %}">Video</a>
+  <!-- <a href="{% url 'video_list' %}">Video</a> -->
   <!-- end class section -->
+
+    <!-- blog section -->
+
+    
+    <section class="blog_section layout_padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 ml-auto">
+                    <div class="heading_container">
+                        <h2>
+                            Latest Blog
+                        </h2>
+                        <p>
+                            iusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis n
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel blog-carousel">
+                {% for blog in blogs %}
+                <div class="item">
+                    <div class="box b2">
+                        <div class="img-box">
+                            <img src="{% static 'images/b2.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-10 mr-auto">
+                                <div class="detail-box">
+                                    <div class="img_date">
+                                        <h6>
+                                            {{ blog.date_posted|date:"F j" }}
+                                        </h6>
+                                    </div>
+                                    <h3>
+                                        {{ blog.blogger.username }}
+                                    </h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    </p>
+                                    <a href="">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    
+      <!-- end blog section -->
+
+
+<script>
+    function toggleVideo(videoElement) {
+        if (videoElement.paused) {
+            videoElement.play();
+        } else {
+            videoElement.pause();
+        }
+    }
+</script>

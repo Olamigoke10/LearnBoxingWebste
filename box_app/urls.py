@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', views.loginPage, name='loginPage'),
     path('logout/', views.logoutUser, name="logout"),
     path('video/', views.video_list, name="video_list"),
+    # path('blog/<int:blog_id>/', views.blog_detail, name='blog_detail'),
 ]
 
 if settings.DEBUG:

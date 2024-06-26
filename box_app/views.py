@@ -3,17 +3,22 @@ from .forms import SignUPForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Video
+from .models import Video, Blog
 
 # Create your views here.
 def get_video():
     return Video.objects.all()
 
+def get_blog():
+    return Blog.objects.all()
+
 
 def home(request):
     videos = get_video()  # Fetch videos
+    blogs = get_blog()
     context = {
         'videos': videos,  # Add videos to context
+        'blogs': blogs,
     }
     return render(request, 'base/home.html', context)
 
